@@ -1,6 +1,12 @@
 var http = require('http');
 var port = parseInt(process.argv[2] || '3000');
-var defaults = { width: 500, height: 100, colour: '663399' };
+var defaults = { width: 500, height: 100 };
+
+// Generate a randomish colour based on the given width and height
+function defaultBackgroundColour(width, height) {
+  var col = (width * height * 0x13579 % 0xFFFFFF).toString(16);
+  return '000000'.substr(0, (6 - col.length)) + col;
+};
 
 // Choose black or white text to contrast with the background colour
 function defaultTextColour(bgColour) {
@@ -20,7 +26,7 @@ http.createServer(function (req, res) {
   var size = params[1].split('x');
   var width = size[0] || defaults.width;
   var height = size[1] || defaults.height;
-  var colour = params[2] || defaults.colour;
+  var colour = params[2] || defaultBackgroundColour(width, height);
   var textColour = params[3] || defaultTextColour(colour);
   var textSize = Math.ceil(Math.min((width / params[1].length), (height / 2)));
 
