@@ -24,11 +24,12 @@ http.createServer(function (req, res) {
   var height = size[1] || Math.ceil(50 + (Math.random() * 200));
   var colour = params[2] || defaultBackgroundColour(width, height);
   var textColour = params[3] || defaultTextColour(colour);
-  var textSize = Math.ceil(Math.min((width / params[1].length), (height / 2)));
+  var text = '' + width + 'x' + height;
+  var textSize = Math.ceil(Math.min((width / text.length), (height / 2)));
 
   var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="'+width+'" height="'+height+'"><g>'+
               '<rect width="100%" height="100%" style="fill:#'+colour+'"/>'+
-              '<text y="50%" x="50%" text-anchor="middle" dominant-baseline="central" style="font-family: sans-serif; font-size: '+textSize+'px; fill:#'+textColour+'">'+width+'x'+height+'</text>' +
+              '<text y="50%" x="50%" text-anchor="middle" dominant-baseline="central" style="font-family: sans-serif; font-size: '+textSize+'px; fill:#'+textColour+'">'+text'</text>' +
             '</g></svg>';
 
   res.writeHead(200, {'Content-Type': 'image/svg+xml', 'Content-Length': svg.length + 1});
