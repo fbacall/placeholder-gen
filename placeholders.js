@@ -1,6 +1,5 @@
 var http = require('http');
 var port = parseInt(process.argv[2] || '3000');
-var defaults = { width: 500, height: 100 };
 
 // Generate a randomish colour based on the given width and height
 function defaultBackgroundColour(width, height) {
@@ -21,8 +20,8 @@ http.createServer(function (req, res) {
   console.log(req.connection.remoteAddress, params);
 
   var size = params[1].split('x');
-  var width = size[0] || defaults.width;
-  var height = size[1] || defaults.height;
+  var width = size[0] || Math.ceil(50 + Math.random(500));
+  var height = size[1] || Math.ceil(50 + Math.random(200));
   var colour = params[2] || defaultBackgroundColour(width, height);
   var textColour = params[3] || defaultTextColour(colour);
   var textSize = Math.ceil(Math.min((width / params[1].length), (height / 2)));
