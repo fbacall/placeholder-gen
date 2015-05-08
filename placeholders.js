@@ -29,7 +29,7 @@ http.createServer(function (req, res) {
 
   var svg = '<svg xmlns="http://www.w3.org/2000/svg" width="'+width+'" height="'+height+'"><g>'+
               '<rect width="100%" height="100%" style="fill:#'+colour+'"/>'+
-              '<text y="50%" x="50%" text-anchor="middle" dominant-baseline="central" style="font-family: sans-serif; font-size: '+textSize+'px; fill:#'+textColour+'">'+text'</text>' +
+              '<text y="50%" x="50%" text-anchor="middle" dominant-baseline="central" style="font-family: sans-serif; font-size: '+textSize+'px; fill:#'+textColour+'">'+text+'</text>' +
             '</g></svg>';
 
   res.writeHead(200, {'Content-Type': 'image/svg+xml', 'Content-Length': svg.length + 1});
