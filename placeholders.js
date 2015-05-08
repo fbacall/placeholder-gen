@@ -10,13 +10,10 @@ function defaultBackgroundColour(width, height) {
 
 // Choose black or white text to contrast with the background colour
 function defaultTextColour(bgColour) {
-  return (
-          (
-           parseInt(bgColour.substr(0,2), 16) +
-           parseInt(bgColour.substr(2,2), 16) +
-           parseInt(bgColour.substr(4,2), 16)
-          ) / (3 * 0xFF)
-         ) >= 0.5 ? '000000' : 'FFFFFF';
+  return ((parseInt(bgColour[0], 16) * 2 +
+           parseInt(bgColour[2], 16) * 4 +
+           parseInt(bgColour[4], 16)) / 112 // (2 + 4 + 1) * 16
+         ) >= 0.6 ? '000000' : 'FFFFFF';
 }
 
 http.createServer(function (req, res) {
