@@ -1,9 +1,6 @@
 # Placeholder Image Generator
 A simple node application to generate SVG images of a given dimension and colour to be used as placeholders.
 
-### Installation
-    npm install
-
 ### Running (on port 3456)
     node placeholders.js 3456
 
