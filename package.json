@@ -1,6 +1,6 @@
 {
-  "name": "placeholder-generator",
-  "version": "0.0.1",
+  "name": "placeholder-gen",
+  "version": "0.0.2",
   "description": "Generate placeholder SVG images with a given width, height and colour.",
   "main": "placeholders.js",
   "scripts": {
@@ -8,7 +8,5 @@
   },
   "author": "Finn Bacall",
   "license": "BSD-2-Clause",
-  "dependencies": {
-    "express": "~4.12.3"
-  }
+  "dependencies": { }
 }
