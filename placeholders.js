@@ -1,5 +1,5 @@
 var Http = require('http');
-var Rsvg = require('rsvg').Rsvg;
+var Rsvg = require('librsvg').Rsvg;
 var Stream = require('stream');
 
 var port = parseInt(process.argv[2] || '3000');
