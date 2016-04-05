@@ -20,12 +20,15 @@ function defaultTextColour(bgColour) {
 }
 
 Http.createServer(function (req, res) {
-  var params = req.url.split('/');
-  console.log(req.connection.remoteAddress, params);
-
+  var url = req.url;
+  
   // Check for .png extension
-  var segments = req.url.split('.');
-  var isPng = segments[segments.length - 1] && segments[segments.length - 1] == 'png';
+  var isPng = req.url.endsWith('.png');
+  if(isPng) // Strip .png extension
+    url = url.substring(0, url.length - 4);
+
+  var params = url.split('/');
+  console.log(req.connection.remoteAddress, params);
 
   var size = params[1].split('x');
   var width = parseInt(size[0]) || Math.ceil(50 + (Math.random() * 500));
