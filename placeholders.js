@@ -1,5 +1,5 @@
 var Http = require('http');
-var Rsvg = require('librsvg').Rsvg;
+var svg2img = require('svg2img');
 var Stream = require('stream');
 
 var port = parseInt(process.argv[2] || '3000');
@@ -51,18 +51,10 @@ Http.createServer(function (req, res) {
             '</g></svg>';
 
   if(isPng) {
-    var rsvg = new Rsvg();
-    var stream = new Stream.Readable();
-    stream.push(svg);
-    stream.push(null);
-
-    rsvg.on('finish', function() {
-      var png = rsvg.render({ format: 'png', width: width, height: height }).data;
-      res.writeHead(200, {'Content-Type': 'image/png', 'Content-Length': png.length});
-      res.end(png, 'binary');
+    svg2img(svg, { format: 'png', width: width, height: height }, function(error, buffer) {
+      res.writeHead(200, { 'Content-Type': 'image/png' });
+      res.end(buffer, 'binary');
     });
-
-    stream.pipe(rsvg);
   } else {
     res.writeHead(200, {'Content-Type': 'image/svg+xml', 'Content-Length': svg.length + 1});
     res.end(svg + '\n');
